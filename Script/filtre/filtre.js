@@ -51,8 +51,8 @@ export function initFilters(allProducts, renderCallback) {
     resetBtn.addEventListener('click', () => {
         searchInput.value = '';
         checkboxes.forEach(cb => cb.checked = false);
-        priceRange.value = 500;
-        document.getElementById('rangeValue').textContent = "500$";
+        priceRange.value = 250;
+        document.getElementById('rangeValue').textContent = "250$";
         orderSelect.value = 'default';
         applyFilters();
     });

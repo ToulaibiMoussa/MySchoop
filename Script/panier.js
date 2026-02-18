@@ -24,20 +24,25 @@ function renderCart() {
         const itemElement = document.createElement('div');
         itemElement.className = 'cart-item';
         itemElement.innerHTML = `
+        <div class="cart-item-details">
             <img src="${item.image}" alt="${item.id}">
             <div class="cart-item-info">
                 <h4>${item.id}</h4>
-                <p>${item.prix}</p>
             </div>
-            <div class="cart-item-qty">
-                <button class="qty-btn minus" data-index="${index}">-</button>
-                <span>${item.quantity}</span>
-                <button class="qty-btn plus" data-index="${index}">+</button>
-            </div>
-            <div class="cart-item-subtotal">
-                ${subtotal}$
+        </div>
+        <div class = "unite">
+            <div class="cart-item-price">
+                <div class="cart-item-qty">
+                    <button class="qty-btn minus" data-index="${index}">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="qty-btn plus" data-index="${index}">+</button>
+                </div>
+                <div class="cart-item-subtotal">
+                    ${subtotal}$
+                </div>
             </div>
             <button class="remove-btn" data-index="${index}"><i class="fas fa-trash"></i></button>
+        </div>
         `;
         cartItemsContainer.appendChild(itemElement);
     });

@@ -7,6 +7,7 @@ main {
 
 .cart-container {
     max-width: 1000px;
+    width: 90%;
     margin: 2rem auto;
     padding: 2rem;
     background: white;
@@ -20,6 +21,7 @@ main {
     justify-content: space-between;
     padding: 1rem 0;
     border-bottom: 1px solid var(--border-color);
+    position: relative;
 }
 
 .cart-item img {
@@ -54,26 +56,34 @@ main {
 
 .cart-item-subtotal {
     font-weight: bold;
-    width: 100px;
-    text-align: right;
+    padding-left: 10px;
+    text-align: center;
 }
 
 .remove-btn {
+    position: absolute;
     background: transparent;
     border: none;
     color: red;
+    right: 1rem;
     cursor: pointer;
     font-size: 1.2rem;
     margin-left: 1rem;
 }
 
+.cart-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
 .cart-summary {
     margin-top: 2rem;
-    text-align: right;
 }
 
 .cart-summary h3 {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    text-align: right;
     margin-bottom: 1rem;
 }
 
@@ -89,7 +99,6 @@ main {
     color: white;
     border: none;
     cursor: pointer;
-    margin-right: 1rem;
 }
 
 .btn-back {
@@ -102,4 +111,68 @@ main {
     padding: 3rem;
     font-size: 1.2rem;
     color: #666;
+}
+
+.cart-item-details, .unite {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#buyCart {
+    background-color: green;
+    border: #666;
+}
+
+@media (max-width: 650px) {
+    .cart-item-details, .unite {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .unite .cart-item-price {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+
+    main {
+        padding: 0;
+    }
+
+    .cart-container {
+        margin: 1rem 0;
+        padding: 1em 0;
+    }
+
+    .cart-summary h3 {
+        margin-right: 10px;
+    }
+
+    .cart-btns {
+        padding: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+}
+
+@media (max-width: 530px) {
+    .cart-btns {
+        padding: 0;
+    }
+}
+
+
+@media (max-width: 430px) {
+    .cart-item {
+        justify-content: flex-start;
+    }
 }
