@@ -154,6 +154,14 @@ select {
     border-radius: 10px;
     outline: none;
     border: 1px solid var(--border-color);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.reintialiser button:active {
+    background-color: black;
+    color: white;
+    transform: translateY(-3px);
+    cursor: pointer;
 }
 
 section h2 {
