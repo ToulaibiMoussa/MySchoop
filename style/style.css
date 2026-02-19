@@ -161,6 +161,9 @@ select {
     background-color: black;
     color: white;
     transform: translateY(-3px);
+}
+
+.reintialiser button:hover {
     cursor: pointer;
 }
 
