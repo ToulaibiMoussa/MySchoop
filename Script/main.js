@@ -3,8 +3,6 @@ import { initFilters } from "./filtre/filtre.js";
 import { addToCart, updateCartUI } from "./cart.js";
 
 const MesProduitContainer = document.querySelector(".product-galleries");
-// Remove or comment out since the items are dynamic
-// const addToCard = document.querySelectorAll(".add-to-cart");
 
 export function renderProducts(productsToRender) {
   MesProduitContainer.innerHTML = "";
@@ -28,7 +26,7 @@ export function renderProducts(productsToRender) {
           <img src="${item.image}" alt="${item.id}">
           <div class="item-content">
               <h3>${item.id}</h3>
-              <span>${item.prix}</span>
+              <span>${item.prix}$</span>
                               
               <button class="add-to-cart" 
                       data-name="${item.id}" 
@@ -56,13 +54,37 @@ updateCartUI();
 MesProduitContainer.addEventListener("click", (e) => {
   const button = e.target.closest(".add-to-cart");
   if (button) {
+    // Vérifier si le bouton n'est pas déjà en état "ajouté"
+    if (button.classList.contains("added")) {
+      return;
+    }
+    
+    // Récupérer les données du produit depuis les attributs data
     const product = {
       id: button.dataset.name,
-      image: button.dataset.image,
       prix: button.dataset.price,
-      quantity: 1
+      image: button.dataset.image
     };
+    
+    // Ajouter le produit au panier
     addToCart(product);
+    
+    // Feedback visuel : changer l'icône et le style du bouton
+    const icon = button.querySelector("i");
+    if (icon) {
+      icon.className = "fas fa-check";
+    }
+    
+    // Ajouter la classe pour le style visuel
+    button.classList.add("added");
+    
+    // Optionnel : Retirer le feedback après 0.8 secondes
+    setTimeout(() => {
+      if (icon) {
+        icon.className = "fas fa-cart-plus";
+      }
+      button.classList.remove("added");
+    }, 800);
   }
 });
 

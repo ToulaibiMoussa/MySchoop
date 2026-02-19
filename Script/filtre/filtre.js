@@ -25,14 +25,25 @@ export function initFilters(allProducts, renderCallback) {
 
         // Price filter
         const maxPrice = parseInt(priceRange.value);
-        filtered = filtered.filter(p => parseInt(p.prix) <= maxPrice);
+        filtered = filtered.filter(p => {
+            const price = typeof p.prix === 'number' ? p.prix : parseInt(p.prix);
+            return price <= maxPrice;
+        });
 
         // Sorting
         const order = orderSelect.value;
         if (order === 'priceAsc') {
-            filtered.sort((a, b) => parseInt(a.prix) - parseInt(b.prix));
+            filtered.sort((a, b) => {
+                const priceA = typeof a.prix === 'number' ? a.prix : parseInt(a.prix);
+                const priceB = typeof b.prix === 'number' ? b.prix : parseInt(b.prix);
+                return priceA - priceB;
+            });
         } else if (order === 'priceDesc') {
-            filtered.sort((a, b) => parseInt(b.prix) - parseInt(a.prix));
+            filtered.sort((a, b) => {
+                const priceA = typeof a.prix === 'number' ? a.prix : parseInt(a.prix);
+                const priceB = typeof b.prix === 'number' ? b.prix : parseInt(b.prix);
+                return priceB - priceA;
+            });
         } else if (order === 'nameAsc') {
             filtered.sort((a, b) => a.id.localeCompare(b.id));
         } else if (order === 'nameDesc') {

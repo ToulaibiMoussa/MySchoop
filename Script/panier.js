@@ -17,7 +17,7 @@ function renderCart() {
     }
 
     cart.forEach((item, index) => {
-        const itemPrice = parseInt(item.prix);
+        const itemPrice = typeof item.prix === 'number' ? item.prix : parseInt(item.prix);
         const subtotal = itemPrice * item.quantity;
         total += subtotal;
 
